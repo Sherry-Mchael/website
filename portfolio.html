@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Michael Omondi — Portfolio</title>
+
+  <!-- GOOGLE TAG MANAGER (paste your GTM ID where indicated) -->
+  <!-- Replace GTM-XXXXXXX with your ID or remove these two snippets if you don't use GTM -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');
+  </script>
+
+  <style>
+    /* --- Reset & base --- */
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#6ee7b7; --glass: rgba(255,255,255,0.03);
+      --radius:14px; --glass-2: rgba(255,255,255,0.02);
+      --light-bg:#f6f8fb; --light-card:#ffffff; --dark-text:#0b1220; --light-text:#e6eef6;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:var(--light-text);background:linear-gradient(180deg,#071022 0%, #081428 60%);}
+    a{color:inherit;text-decoration:none}
+
+    /* container */
+    .wrap{max-width:1100px;margin:32px auto;padding:28px;display:grid;grid-template-columns:340px 1fr;gap:28px}
+    @media (max-width:900px){.wrap{grid-template-columns:1fr;padding:18px}}
+
+    /* sidebar */
+    .card{background:var(--card);border-radius:var(--radius);padding:22px;backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+    .profile{display:flex;gap:16px;align-items:center}
+    .avatar{width:84px;height:84px;border-radius:12px;overflow:hidden;flex-shrink:0;border:1px solid rgba(255,255,255,0.04)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .title{font-size:18px;font-weight:600}
+    .sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+    .contact-list{display:grid;gap:8px;margin-top:16px}
+    .contact-item{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);}
+    .chip{font-size:13px;color:var(--muted)}
+
+    .skills{margin-top:18px}
+    .skill{margin-bottom:10px}
+    .skill .bar{height:8px;background:var(--glass-2);border-radius:99px;overflow:hidden}
+    .skill .bar > i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),#8bd5ff);width:60%}
+
+    /* main */
+    .main{display:flex;flex-direction:column;gap:18px}
+    header.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+    .intro{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:22px;border-radius:12px}
+    .intro h1{margin:0;font-size:22px}
+    .intro p{color:var(--muted);margin-top:8px}
+
+    .actions{display:flex;gap:10px;margin-top:12px}
+    .btn{padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:600;background:linear-gradient(90deg,var(--accent),#89d4ff);color:#042127}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--light-text)}
+
+    /* projects grid */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media (max-width:900px){.projects{grid-template-columns:1fr}}
+    .project{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+    .p-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .p-title{font-weight:700}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted)}
+
+    /* dashboard */
+    .dashboard{display:grid;grid-template-columns:1fr 220px;gap:12px}
+    @media (max-width:900px){.dashboard{grid-template-columns:1fr}}
+    .viz{padding:14px;border-radius:12px}
+    .metrics{display:flex;flex-direction:column;gap:12px}
+    .metric{padding:10px;border-radius:10px;background:var(--glass)}
+    .metric strong{display:block;font-size:18px}
+
+    /* hobbies */
+    .hobbies{display:flex;gap:12px;flex-wrap:wrap}
+    .hobby{padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+
+    /* contact form */
+    form.contact{display:grid;gap:10px}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:var(--light-text)}
+
+    /* footer */
+    footer{color:var(--muted);font-size:13px;text-align:center;margin-top:18px}
+
+    /* theme toggle */
+    .toggle{display:inline-flex;align-items:center;padding:6px;background:rgba(255,255,255,0.03);border-radius:999px}
+
+    /* small animations */
+    .fade-up{transform:translateY(8px);opacity:0;animation:up 700ms ease forwards}
+    @keyframes up{to{transform:none;opacity:1}}
+  </style>
+</head>
+<body>
+  <!-- GTM noscript (paste your GTM ID in the src if you enable GTM) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="wrap">
+    <!-- SIDEBAR -->
+    <aside class="card fade-up">
+      <div class="profile">
+        <div class="avatar" title="Profile photo">
+          <!-- Default inline avatar: replace src with your photo path or URL -->
+          <img id="profilePhoto" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='100%' height='100%' fill='%230c1220'/><circle cx='200' cy='150' r='80' fill='%236ee7b7'/><rect x='120' y='260' width='160' height='80' rx='20' fill='%236ee7b7'/></svg>" alt="Michael Omondi">
+        </div>
+        <div>
+          <div class="title">Michael Omondi</div>
+          <div class="sub">Student — Analytics Vidya • AGI & ML enthusiast</div>
+          <div class="sub" style="margin-top:6px">Predictive models • Time series forecasting</div>
+        </div>
+      </div>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <div class="chip">📧</div>
+          <div>
+            <div style="font-weight:700">miketravis488@gmail.com</div>
+            <div class="sub">Email</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="chip">📱</div>
+          <div>
+            <div style="font-weight:700">+254 104 709 967</div>
+            <div class="sub">WhatsApp</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="chip">🏫</div>
+          <div>
+            <div style="font-weight:700">Analytics Vidya</div>
+            <div class="sub">Student</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills">
+        <h4 style="margin:10px 0 8px">Skills & Tools</h4>
+        <div class="skill"><div style="display:flex;justify-content:space-between"><span>Python</span><span class="sub">Expert</span></div><div class="bar"><i style="width:88%"></i></div></div>
+        <div class="skill"><div style="display:flex;justify-content:space-between"><span>R</span><span class="sub">Advanced</span></div><div class="bar"><i style="width:70%"></i></div></div>
+        <div class="skill"><div style="display:flex;justify-content:space-between"><span>SQL</span><span class="sub">Advanced</span></div><div class="bar"><i style="width:82%"></i></div></div>
+        <div class="skill"><div style="display:flex;justify-content:space-between"><span>TensorFlow / PyTorch</span><span class="sub">Competent</span></div><div class="bar"><i style="width:64%"></i></div></div>
+        <div class="skill"><div style="display:flex;justify-content:space-between"><span>Apache Spark</span><span class="sub">Working</span></div><div class="bar"><i style="width:56%"></i></div></div>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:10px">
+        <button class="btn" onclick="downloadHTML()">Download HTML</button>
+        <button class="ghost btn" onclick="toggleTheme()">Toggle Theme</button>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="hero fade-up">
+        <div class="intro">
+          <h1>Hi, I’m Michael — a student building predictive time series models to help businesses make smarter decisions.</h1>
+          <p>I study at <strong>Analytics Vidya</strong> and focus on machine learning, forecasting, and exploring long-term AGI-safe approaches. I build models that convert data into profits and better decisions.</p>
+
+          <div class="actions">
+            <a class="btn" href="mailto:miketravis488@gmail.com?subject=Hello%20Michael">Email Me</a>
+            <a class="ghost btn" href="https://wa.me/254104709967" target="_blank">Chat on WhatsApp</a>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end">
+          <div class="toggle" style="padding:10px 12px;">
+            <label style="font-size:13px;margin-right:8px">Theme</label>
+            <input id="themeSwitch" type="checkbox" onchange="toggleTheme()" />
+          </div>
+
+          <div class="card" style="width:260px;padding:12px;text-align:left">
+            <div style="font-weight:700">Quick stats</div>
+            <div style="display:flex;justify-content:space-between;margin-top:10px">
+              <div><div style="font-weight:800;font-size:20px">12</div><div class="sub">Projects</div></div>
+              <div><div style="font-weight:800;font-size:20px">3.8s</div><div class="sub">Avg inference</div></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="fade-up">
+        <h3 style="margin:6px 0">Projects — Forecasting & Predictive Modeling</h3>
+        <div class="projects">
+
+          <article class="project">
+            <div class="p-meta"><div class="p-title">Retail Demand Forecasting</div><div class="sub">Time series • ARIMA • LSTM</div></div>
+            <p class="sub">Built hierarchical forecasting models that reduced stockouts by 18% and improved inventory turnover.</p>
+            <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">SQL</span></div>
+          </article>
+
+          <article class="project">
+            <div class="p-meta"><div class="p-title">Energy Load Prediction</div><div class="sub">Feature engineering • XGBoost</div></div>
+            <p class="sub">Modelled hourly energy demand to optimize dispatch and save operational costs.</p>
+            <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">Spark</span><span class="tag">R</span></div>
+          </article>
+
+          <article class="project">
+            <div class="p-meta"><div class="p-title">Sales Uplift Modeling</div><div class="sub">Causal inference • A/B analysis</div></div>
+            <p class="sub">Estimated campaign impact and advised on budget allocation to maximize ROI.</p>
+            <div class="tags" style="margin-top:10px"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Excel</span></div>
+          </article>
+
+          <article class="project">
+            <div class="p-meta"><div class="p-title">Forecasting Dashboard</div><div class="sub">Interactive • Real-time</div></div>
+            <p class="sub">A lightweight dashboard demonstrating forecast vs actuals with KPIs and simple scenario manager.</p>
+            <div class="tags" style="margin-top:10px"><span class="tag">JavaScript</span><span class="tag">Canvas</span><span class="tag">HTML</span></div>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="dashboard fade-up">
+        <div class="viz card">
+          <h4>Forecast vs Actual (sample)</h4>
+          <canvas id="chart" width="600" height="260" style="width:100%;height:200px;border-radius:8px;margin-top:8px"></canvas>
+          <p class="sub" style="margin-top:8px">Interactive simulated visual — hover to inspect points.</p>
+        </div>
+
+        <aside class="card metrics">
+          <div class="metric"><strong id="m1">$124k</strong><div class="sub">Estimated monthly value captured</div></div>
+          <div class="metric"><strong id="m2">92%</strong><div class="sub">Forecast accuracy</div></div>
+          <div class="metric"><strong id="m3">18%</strong><div class="sub">Reduced stockouts (example)</div></div>
+        </aside>
+      </section>
+
+      <section class="fade-up">
+        <h3>Hobbies & Interests</h3>
+        <div class="hobbies">
+          <div class="hobby">Reading AGI research papers</div>
+          <div class="hobby">Kaggle competitions</div>
+          <div class="hobby">Open-source contributions</div>
+          <div class="hobby">Building small forecasting tools</div>
+        </div>
+      </section>
+
+      <section class="fade-up card" style="padding:18px">
+        <h3>Contact</h3>
+        <p class="sub">Send a message or start a chat on WhatsApp — I typically respond by email.</p>
+
+        <form class="contact" onsubmit="submitForm(event)">
+          <input required id="name" placeholder="Your name" />
+          <input required id="email" placeholder="Your email" />
+          <textarea required id="message" rows="4" placeholder="What would you like to talk about?"></textarea>
+
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="btn" type="submit">Send (mailto)</button>
+            <a class="ghost btn" id="waBtn" href="https://wa.me/254104709967" target="_blank">Open WhatsApp</a>
+          </div>
+        </form>
+      </section>
+
+      <footer class="fade-up">© Michael Omondi — Analytics Vidya • Built with a focus on AGI, ML, and forecasting</footer>
+    </main>
+  </div>
+
+  <script>
+    // --- Theme handling ---
+    const prefersLight = false;
+    function toggleTheme(){
+      const root = document.documentElement;
+      if(root.dataset.theme === 'light'){
+        root.dataset.theme = 'dark';
+        root.style.setProperty('--card','var(--card)');
+        root.style.setProperty('--light-text','#e6eef6');
+      } else {
+        root.dataset.theme = 'light';
+        // light theme vars
+        root.style.setProperty('--card', 'var(--light-card)');
+        root.style.setProperty('--light-text', 'var(--dark-text)');
+        root.style.setProperty('--bg', 'var(--light-bg)');
+      }
+    }
+
+    // --- Simple sample chart (no external libs) ---
+    function drawChart(){
+      const canvas = document.getElementById('chart');
+      const ctx = canvas.getContext('2d');
+      // responsive backing
+      function resize(){
+        const w = canvas.clientWidth; const h = 200; canvas.width = w*devicePixelRatio; canvas.height = h*devicePixelRatio; canvas.style.height = h+'px'; ctx.scale(devicePixelRatio,devicePixelRatio); render();
+      }
+      window.addEventListener('resize', ()=>{ resize(); });
+
+      // sample data: forecast and actual
+      const labels = Array.from({length:30},(_,i)=>i+1);
+      const forecast = labels.map(x=> Math.round(80 + Math.sin(x/4)*10 + x*0.5));
+      const actual = labels.map((x,i)=> forecast[i] + Math.round((Math.random()-0.4)*12));
+
+      function render(){
+        const w = canvas.clientWidth; const h = 200;
+        ctx.clearRect(0,0,w,h);
+        // grid
+        ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth=1;
+        for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(0,(h/4)*i+10);ctx.lineTo(w,(h/4)*i+10);ctx.stroke();}
+
+        // draw lines
+        function drawLine(data,stroke,fill){
+          ctx.beginPath();
+          data.forEach((v,i)=>{
+            const x = 20 + (w-40)*(i/(data.length-1));
+            const y = 20 + (h-40) - ((v - 50)/(150-50))*(h-40);
+            if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+          });
+          ctx.strokeStyle = stroke; ctx.lineWidth=2; ctx.stroke();
+        }
+        drawLine(forecast,'rgba(110,231,183,0.95)');
+        drawLine(actual,'rgba(137,212,255,0.95)');
+
+        // legend
+        ctx.fillStyle='rgba(255,255,255,0.9)'; ctx.font='12px Inter,Arial'; ctx.fillText('Forecast',22,16); ctx.fillText('Actual',120,16);
+      }
+
+      resize();
+    }
+
+    // --- Contact form handler: opens mailto with prefilled content ---
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const subject = encodeURIComponent('Portfolio contact from '+name);
+      const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+message);
+      // opens default mail client
+      window.location.href = 'mailto:miketravis488@gmail.com?subject='+subject+'&body='+body;
+    }
+
+    // --- Very small utility to download current HTML file ---
+    function downloadHTML(){
+      const html = '<!doctype html>'+document.documentElement.outerHTML;
+      const blob = new Blob([html],{type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='michael_omondi_portfolio.html'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+
+    // --- small metrics animation ---
+    function animateMetrics(){
+      const m1 = document.getElementById('m1'); const m2 = document.getElementById('m2'); const m3 = document.getElementById('m3');
+      let a=0; const interval = setInterval(()=>{a+=4; m1.textContent = '$'+(120000 + Math.round(a*100)); m2.textContent = Math.min(92, Math.round(a/2))+'%'; m3.textContent = Math.min(18, Math.round(a/20))+'%'; if(a>180) clearInterval(interval)},50);
+    }
+
+    // run on ready
+    document.addEventListener('DOMContentLoaded',()=>{ drawChart(); animateMetrics(); });
+  </script>
+</body>
+</html>
